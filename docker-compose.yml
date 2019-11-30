@@ -1,0 +1,29 @@
+version: '3'
+
+services:
+  server:
+    container_name: server
+    restart: always
+    build: ./back
+    environment:
+      API_HOST: ${API_HOST}
+      APP_SERVER_ROOT: ${APP_SERVER_PORT}
+    expose:
+      - ${APP_SERVER_PORT}
+    ports:
+      - ${APP_SERVER_PORT}:${APP_SERVER_PORT}
+    links:
+     - mongo
+    volumes:
+      - ./back/:/usr/src/app
+    command: npm start
+  
+  mongo:
+    container_name: mongo
+    image: mongo
+    environment:
+      - MONGO_INITDB_DATABASE=database
+      - MONGO_INITDB_ROOT_USERNAME=root
+      - MONGO_INITDB_ROOT_PASSWORD=pwd
+    ports:
+      - "27017:27017"

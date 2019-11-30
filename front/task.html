@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Gestion de projets</title>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+</head>
+
+<body class="container">
+
+    <nav class="navbar navbar-expand-md navbar-dark bg-dark">
+
+        <div class="container">
+            <a class="btn btn-dark" href="index.html">
+                Accueil
+            </a>
+
+            <div class="container">
+                <div class="dropdown">
+                    <button class="btn btn-success btn-sm ml-3 dropdown-toggle" id="menu1" type="button"
+                        data-toggle="dropdown">Mon compte
+                        <span class="caret"></span></button>
+                    <ul class="dropdown-menu" role="menu" aria-labelledby="menu1">
+                        <li role="presentation"><a role="menuitem" tabindex="-1" href="myaccount.html">Mon profil</a>
+                        </li>
+                        <li role="presentation"><a role="menuitem" tabindex="-1" href="myprojects.html">Mes projets</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="collapse navbar-collapse justify-content-end" id="navbarsExampleDefault">
+                <form class="form-inline my-2 my-lg-0">
+                    <a class="btn btn-success btn-sm ml-3" href="home.html">Déconnexion</a>
+                </form>
+            </div>
+        </div>
+    </nav>
+
+    <section class="jumbotron text-center">
+        <div class="container">
+            <h1 class="jumbotron-heading">Projet 1</h1>
+        </div>
+    </section>
+
+    <div class="row">
+        <div class="col-sm-4">
+            <nav class="nav flex-column">
+                <a class="nav-link" href="issue.html">Issues</a>
+                <a class="nav-link" href="task.html">Tâches</a>
+                <a class="nav-link" href="test.html">Tests</a>
+                <a class="nav-link" href="release.html">Releases</a>
+                <a class="nav-link" href="documentation.html">Documentation</a>
+            </nav>
+        </div>
+
+        <div class="col-sm-8">
+            <a class="btn btn-success btn-sm ml-3" href="createtask.html">Créer une tâche</a>
+        </div>
+    </div>
