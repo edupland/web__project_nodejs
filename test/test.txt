@@ -1,0 +1,44 @@
+Test1 : Création d'un compte V
+        -> Je remplis tous les champs : V
+        -> Je ne remplis pas tous les champs obligatoires : X
+
+Test2 : Connexion à un compte V
+        -> Je me connecte avec un login et un mdp valident : V
+        -> Je me connecte avec un login et un mdp invalident : X
+
+Test3 : Changer mes informations 
+        -> Je remplace mes valeurs par d'autres : V
+        -> Je remplace mes valeurs par rien : X
+
+Test4 : Créer un projet V
+        -> Je met un titre : V
+        -> Je ne met pas de titre : X
+
+Test5 : Éditer un projet V
+        -> Je remplace le titre par un titre valide : V
+        -> Je remplace le titre par un titre vide : X
+
+Test6 : Gérer un projet
+        -> Je met des logins valident pour ajouter des développeurs et des clients : V
+        -> Je met des logins inexistants pour ajouter des développeurs et des clients : X
+
+Test7 : Supprimer un projet
+        -> Je supprime un projet existant : V
+        -> Je supprime un projet inexistant : X
+
+Test8 : Créer une issue
+        -> Je remplis tous les champs : V
+        -> Je ne remplis pas tous les champs obligatoires : X
+
+Test9 : Créer une tâche
+        -> Je remplis tous les champs : V
+        -> Je ne remplis pas tous les champs obligatoires : X
+
+Test10 : Créer un test
+         -> Je remplis tous les champs : V
+         -> Je ne remplis pas tous les champs obligatoires : X
+
+Test11 : Déconnexion V
+         -> Je suis connecté à un compte et je me déconnecte : V
+         -> Je ne suis pas connecté à un compte : X
+

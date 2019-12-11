@@ -1,0 +1,679 @@
+---
+swagger: "2.0"
+info:
+  description: Gestionnaire de projets
+  version: 1.0.0
+  title: CDP
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+host: virtserver.swaggerhub.com
+basePath: /edupland/CDP/1.0.0
+tags:
+- name: User
+  description: Permet de gérer les utilisaurs
+- name: Project
+  description: Permet de gérer les projets
+- name: Issue
+  description: Permet de gérer les issues
+- name: Task
+  description: Permet de gérer les tâches
+- name: Test
+  description: Permet de gérer les tests
+schemes:
+- https
+paths:
+  /user:
+    get:
+      tags:
+      - User
+      summary: Connexion d'un utilisateur
+      description: Un utilisateur se connecte à l'outil
+      parameters:
+      - name: Login
+        in: query
+        description: Login de l'utilisateur pour se connecter
+        required: true
+        type: string
+      - name: Password
+        in: query
+        description: Mot de passe de l'utilisateur pour se connecter
+        required: true
+        type: string
+      responses:
+        "200":
+          description: Connexion réussie
+        "401":
+          description: Utilisateur ou mot de passe incorrect
+        "500":
+          description: Échec vérification identifiants
+    post:
+      tags:
+      - User
+      summary: Création d'un utilisateur
+      description: Un nouvel utilisateur est créé
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      parameters:
+      - name: Nom
+        in: query
+        description: Nom de famille de l'utilisateur
+        required: true
+        type: string
+      - name: Prenom
+        in: query
+        description: Prénom de l'utilisateur
+        required: true
+        type: string
+      - name: Mail
+        in: query
+        description: Adresse mail de l'utilisateur
+        required: true
+        type: string
+      - name: Societe
+        in: query
+        description: Société à laquelle appartient l'utilisateur
+        required: false
+        type: string
+      - name: Login
+        in: query
+        description: Login de l'utilisateur pour se connecter
+        required: true
+        type: string
+      - name: Password
+        in: query
+        description: Mot de passe de l'utilisateur pour se connecter
+        required: true
+        type: string
+      responses:
+        "201":
+          description: Inscription réussie
+          schema:
+            $ref: '#/definitions/User'
+        "409":
+          description: Login déjà existant
+        "500":
+          description: |-
+            Échec vérification login
+            Échec de l'inscription
+            Connexion à la base de données impossible
+            Fermeture base de donnée impossible
+    put:
+      tags:
+      - User
+      summary: Mettre à jour le profil
+      description: Changer les informations d'un utilisateur
+      parameters:
+      - name: oldLogin
+        in: query
+        description: Login de l'utilisateur
+        required: true
+        type: string
+      - name: Nom
+        in: query
+        description: Nouveau Nom
+        required: false
+        type: string
+      - name: Prenom
+        in: query
+        description: Nouveau Prénom
+        required: false
+        type: string
+      - name: Mail
+        in: query
+        description: Nouvelle adresse mail
+        required: false
+        type: string
+      - name: Societe
+        in: query
+        description: Nouvelle société
+        required: false
+        type: string
+      - name: Login
+        in: query
+        description: Nouveau login
+        required: false
+        type: string
+      - name: Password
+        in: query
+        description: Nouveau mot de passe
+        required: false
+        type: string
+      responses:
+        "201":
+          description: Mise à jour des informations de l'utilisateur réussie
+          schema:
+            $ref: '#/definitions/User'
+        "409":
+          description: Login déjà existant
+        "500":
+          description: |-
+            Éche de la vérification de l'ancien login
+            Échec de la mise à jour des informations de l'utilisateur
+  /project:
+    post:
+      tags:
+      - Project
+      summary: Création d'un projet
+      description: Un nouveau projet est créé
+      parameters:
+      - name: Titre
+        in: query
+        description: Titre du nouveau projet
+        required: true
+        type: string
+      - name: Description
+        in: query
+        description: Description du projet
+        required: false
+        type: string
+      - name: Proprietaire
+        in: query
+        description: Propriétaire du projet
+        required: true
+        type: string
+      responses:
+        "201":
+          description: Création du projet réussie
+          schema:
+            $ref: '#/definitions/Project'
+        "500":
+          description: |-
+            Connexion à la base de données impossible
+            Échec de la récupération des informations du propriétaire
+            Échec de la création du projet
+    put:
+      tags:
+      - Project
+      summary: Mettre à jour le projet
+      description: Changer les informations du projet
+      parameters:
+      - name: Id
+        in: query
+        description: Id de l'utilisateur
+        required: true
+        type: string
+      - name: Titre
+        in: query
+        description: Nouveau titre du projet
+        required: false
+        type: string
+      - name: Description
+        in: query
+        description: Nouvelle description du projet
+        required: false
+        type: string
+      responses:
+        "200":
+          description: Mise à jour du projet réussie
+        "500":
+          description: |-
+            Connexion à la base de données impossible
+            Échec de la mise à jour du projet
+    delete:
+      tags:
+      - Project
+      summary: Suppression d'un projet
+      description: Un projet est supprimé
+      parameters:
+      - name: IDProjet
+        in: query
+        description: Id du projet
+        required: true
+        type: string
+      responses:
+        "200":
+          description: Suppression du projet réussie
+        "500":
+          description: |-
+            Connexion à la base de données impossible
+            Échec de la suppression du projet
+  /project/proprietaire:
+    get:
+      tags:
+      - Project
+      summary: Récupération des projets
+      description: On récupère les différents projets dont le login est propriétaire
+      parameters:
+      - name: Login
+        in: query
+        description: Login du propriétaire
+        required: true
+        type: string
+      responses:
+        "200":
+          description: La liste des projets dont le login est propriétaire
+        "500":
+          description: |-
+            Connexion à la base de données impossible
+            Échec de la récupération des projets dont le login est propriétaire
+  /project/developpeur:
+    get:
+      tags:
+      - Project
+      summary: Récupération des projets
+      description: On récupère les différents projets dont le login est développeur
+      parameters:
+      - name: Login
+        in: query
+        description: Login du développeur
+        required: true
+        type: string
+      responses:
+        "200":
+          description: La liste des projets dont le login est développeur
+        "500":
+          description: |-
+            Connexion à la base de données impossible
+            Échec de la récupération des projets dont le login est développeur
+  /project/client:
+    get:
+      tags:
+      - Project
+      summary: Récupération des projets
+      description: On récupère les différents projets dont le login est client
+      parameters:
+      - name: Login
+        in: query
+        description: Login du client
+        required: true
+        type: string
+      responses:
+        "200":
+          description: La liste des projets dont le login est client
+        "500":
+          description: |-
+            Connexion à la base de données impossible
+            Échec de la récupération des projets dont le login est client
+  /project/id:
+    get:
+      tags:
+      - Project
+      summary: Récupération des projets
+      description: On récupère les différents projets de l'utilisateur connecté
+      parameters:
+      - name: Id
+        in: query
+        description: Id de l'utilisateur
+        required: true
+        type: string
+      responses:
+        "200":
+          description: La liste des projets de l'utilisateur
+        "500":
+          description: |-
+            Connexion à la base de données impossible
+            Échec de la récupération des projets de l'utilisateur
+  /issue:
+    get:
+      tags:
+      - Issue
+      summary: Récupération des issues
+      description: On récupère les issues d'un projet
+      parameters:
+      - name: IDProjet
+        in: query
+        description: Id du projet dont on veut les issues
+        required: true
+        type: string
+      responses:
+        "200":
+          description: La liste des issues du projet dont l'id est IDProjet
+        "500":
+          description: |-
+            Connexion à la base de données impossible
+            Échec de la récupération des issues
+    post:
+      tags:
+      - Issue
+      summary: Création d'une issue
+      description: Une issue est créée
+      parameters:
+      - name: IDProjet
+        in: query
+        description: Id du projet
+        required: true
+        type: string
+      - name: Role
+        in: query
+        description: Role de l'issue
+        required: true
+        type: string
+      - name: Action
+        in: query
+        description: Action de l'issue
+        required: true
+        type: string
+      - name: Raison
+        in: query
+        description: Raison de l'issue
+        required: true
+        type: string
+      responses:
+        "201":
+          description: Création de l'issue réussie
+          schema:
+            $ref: '#/definitions/Issue'
+        "500":
+          description: |-
+            Connexion à la base de données impossible
+            Échec de la création de l'issue
+  /task:
+    get:
+      tags:
+      - Task
+      summary: Récupération des tâches
+      description: On récupère les tâches d'un projet
+      parameters:
+      - name: IDProjet
+        in: query
+        description: Id du projet dont on veut les tâches
+        required: true
+        type: string
+      responses:
+        "200":
+          description: La liste des tâches du projet dont l'id est IDProjet
+        "500":
+          description: |-
+            Connexion à la base de données impossible
+            Échec de la récupération des tâches
+    post:
+      tags:
+      - Task
+      summary: Création d'un tâche
+      description: Une tâche est crée
+      parameters:
+      - name: IDProjet
+        in: query
+        description: Id du projet
+        required: true
+        type: string
+      - name: Titre
+        in: query
+        description: Titre de la tâche
+        required: true
+        type: string
+      - name: Statut
+        in: query
+        description: État de la tâche
+        required: true
+        type: string
+        enum:
+        - todo
+        - pending
+        - done
+      responses:
+        "201":
+          description: Création de la tâche réussie
+          schema:
+            $ref: '#/definitions/Task'
+        "500":
+          description: |-
+            Connexion à la base de données impossible
+            Échec de la création de la tâche
+  /test:
+    get:
+      tags:
+      - Test
+      summary: Récupération des tests
+      description: On récupère la liste des tests d'un projet
+      parameters:
+      - name: IDProjet
+        in: query
+        description: Id du projet dont on veut les tests
+        required: true
+        type: string
+      responses:
+        "200":
+          description: La liste des tests du projet dont l'id est IDProjet
+        "500":
+          description: |-
+            Connexion à la base de données impossible
+            Échec de la récupération des tests
+    post:
+      tags:
+      - Test
+      summary: Création d'un test
+      description: Un test est créé
+      parameters:
+      - name: IDProjet
+        in: query
+        description: Id du projet
+        required: true
+        type: string
+      - name: Given
+        in: query
+        description: Initialisation du test
+        required: true
+        type: string
+      - name: When
+        in: query
+        description: Élément qui déclenche un évènement
+        required: true
+        type: string
+      - name: Then
+        in: query
+        description: Effet de l'évènement
+        required: true
+        type: string
+      responses:
+        "200":
+          description: Création d'un test réussie
+          schema:
+            $ref: '#/definitions/Test'
+        "500":
+          description: |-
+            Connexion à la base de données impossible
+            Échec de la création d'un test
+definitions:
+  User:
+    type: object
+    required:
+    - Login
+    - Mail
+    - Nom
+    - Password
+    - Prenom
+    properties:
+      Nom:
+        type: string
+        example: Dupont
+      Prenom:
+        type: string
+        example: Michel
+      Mail:
+        type: string
+        example: michel.dupont@mail.fr
+      Societe:
+        type: string
+      Login:
+        type: string
+        example: mdupont
+      Password:
+        type: string
+        example: mdupont
+  Project:
+    type: object
+    required:
+    - Clients
+    - Description
+    - Developpeurs
+    - Proprietaire
+    - Titre
+    properties:
+      Titre:
+        type: string
+        example: Titre du projet
+      Description:
+        type: string
+        example: Voici la description du projet
+      Proprietaire:
+        $ref: '#/definitions/Project_Proprietaire'
+      Developpeurs:
+        $ref: '#/definitions/Project_Developpeurs'
+      Clients:
+        $ref: '#/definitions/Project_Clients'
+  Issue:
+    type: object
+    required:
+    - Action
+    - Projet
+    - Raison
+    - Role
+    properties:
+      Projet:
+        $ref: '#/definitions/Issue_Projet'
+      Role:
+        type: string
+        example: développeur
+      Action:
+        type: string
+        example: avoir accès à la base de données
+      Raison:
+        type: string
+        example: pouvoir modifier les informations d'un utilisateur
+  Task:
+    type: object
+    required:
+    - Description
+    - Projet
+    - Statut
+    - Titre
+    properties:
+      Projet:
+        $ref: '#/definitions/Issue_Projet'
+      Titre:
+        type: string
+        example: Titre de la tâche 1
+      Description:
+        type: string
+        example: Voici la description de la tâche 1
+      Statut:
+        type: string
+        example: todo
+        enum:
+        - todo
+        - pending
+        - done
+  Test:
+    type: object
+    required:
+    - Projet
+    - testGiven
+    - testThen
+    - testWhen
+    properties:
+      Projet:
+        $ref: '#/definitions/Issue_Projet'
+      testGiven:
+        type: string
+        example: Je crée un projet
+      testWhen:
+        type: string
+        example: Je ne suis pas connecté à l'outil
+      testThen:
+        type: string
+        example: Je vois une alerte "Pas connecté"
+  Project_Proprietaire:
+    type: object
+    required:
+    - Login
+    - Mail
+    - Nom
+    - Password
+    - Prenom
+    properties:
+      Nom:
+        type: string
+        example: Dupont
+      Prenom:
+        type: string
+        example: Michel
+      Mail:
+        type: string
+        example: michel.dupont@mail.fr
+      Societe:
+        type: string
+      Login:
+        type: string
+        example: mdupont
+      Password:
+        type: string
+        example: mdupont
+  Project_Developpeurs:
+    type: object
+    required:
+    - Login
+    - Mail
+    - Nom
+    - Password
+    - Prenom
+    properties:
+      Nom:
+        type: string
+        example: Garcia
+      Prenom:
+        type: string
+        example: Gabriel
+      Mail:
+        type: string
+        example: gabriel.garcia@mail.fr
+      Societe:
+        type: string
+        example: Capgemini
+      Login:
+        type: string
+        example: ggarcia
+      Password:
+        type: string
+        example: ggarcia
+  Project_Clients:
+    type: object
+    required:
+    - Login
+    - Mail
+    - Nom
+    - Password
+    - Prenom
+    properties:
+      Nom:
+        type: string
+        example: Martin
+      Prenom:
+        type: string
+        example: Bernard
+      Mail:
+        type: string
+        example: bernard.martin@mail.fr
+      Societe:
+        type: string
+        example: Dassault
+      Login:
+        type: string
+        example: bmartin
+      Password:
+        type: string
+        example: bmartin
+  Issue_Projet:
+    type: object
+    required:
+    - Clients
+    - Description
+    - Developpeurs
+    - Proprietaire
+    - Titre
+    properties:
+      Titre:
+        type: string
+        example: Titre du projet
+      Description:
+        type: string
+        example: Voici la description du projet
+      Proprietaire:
+        $ref: '#/definitions/Project_Proprietaire'
+      Developpeurs:
+        $ref: '#/definitions/Project_Developpeurs'
+      Clients:
+        $ref: '#/definitions/Project_Clients'

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Gestion de projets</title>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="myaccount.css"/>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+    <script type="application/javascript" src="config.js"></script>
+    <script type="application/javascript" src="readCookie.js" defer></script>
+    <script type="application/javascript" src="myaccount.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+</head>
+
+<body class="container">
+    <script type="application/javascript" src="banner.js"></script>
+
+    <section class="jumbotron text-center">
+        <div class="container">
+            <h1 class="jumbotron-heading">Mon profil</h1>
+        </div>
+    </section>
+
+    <div class="form-group form-inline">
+        <label for="nom">Nom :&nbsp</label>
+            <input type="text" name="nom" class="form-control" id="nom" placeholder="Nom de famille">
+    </div>
+    <div class="form-group form-inline">
+        <label for="prenom">Prénom :&nbsp</label>
+            <input type="text" name="prenom" class="form-control" id="prenom" placeholder="Prénom">
+    </div>
+    <div class="form-group form-inline">
+        <label for="mail">Adresse mail :&nbsp</label>
+            <input type="email" name="mail" class="form-control" id="mail" placeholder="Adresse mail">
+    </div>
+    <div class="form-group form-inline">
+        <label for="login">Login :&nbsp</label>
+            <input type="text" name="login" class="form-control" id="login" placeholder="Login">
+    </div>
+    <div class="form-group form-inline">
+        <label for="password">Mot de passe :&nbsp</label>
+            <input type="password" name="password" class="form-control" id="password" placeholder="Mot de passe">
+    </div>
+    <div class="form-group form-inline">
+        <label for="societe">Nom de la Société :&nbsp</label>
+            <input type="text" name="societe" class="form-control" id="societe" placeholder="Nom de la société">
+    </div>
+    <p style="text-align: center;"><button id="save" class="btn btn-primary">Sauvegarder</button>
+        <a type="button" class="btn btn-secondary" href="index.html">Annuler</a></p>
+</body>
+
+</html>

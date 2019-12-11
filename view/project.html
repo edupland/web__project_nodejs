@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Gestion de projets</title>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+    <script type="application/javascript" src="config.js"></script>
+    <script type="application/javascript" src="titleProject.js" defer></script>
+    <script type="application/javascript" src="project.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+</head>
+
+<body class="container">
+
+    <script type="application/javascript" src="banner.js"></script>
+
+    <section class="jumbotron text-center">
+        <div class="container">
+            <h1 class="jumbotron-heading" id="titre"></h1>
+        </div>
+    </section>
+
+    <div class="row">
+        <div class="col-sm-4">
+            <nav id="menu" class="nav flex-column">
+                <a class="nav-link" href="issue.html">Issues</a>
+                <a class="nav-link" href="task.html">Tâches</a>
+                <a class="nav-link" href="test.html">Tests</a>
+                <a class="nav-link" href="release.html">Releases</a>
+                <a class="nav-link" href="documentation.html">Documentation</a>
+            </nav>
+        </div>
+
+        <div class="col-sm-8">
+            <p id="description"></p>
+        </div>
+    </div>
+</body>
+</html>
